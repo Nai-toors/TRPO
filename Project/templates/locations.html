@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Локации</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('plans') }}">Съёмочные планы</a></li>
+            <li><a href="{{ url_for('locations') }}">Локации</a></li>
+            <li><a href="{{ url_for('castings') }}">Кастинг</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Локации</h1>
+
+    <!-- Форма для добавления новой локации -->
+    <form action="/locations" method="POST">
+        <input type="text" name="address" placeholder="Добавить адрес" required>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <!-- Список локаций -->
+    <ul>
+        {% for location in locations %}
+        <li>
+            {{ location.address }}
+
+            <!-- Форма для удаления локации -->
+            <form action="/locations/{{ location.id }}/delete" method="POST" style="display:inline;">
+                <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить локацию?');">Удалить</button>
+            </form>
+
+            <!-- Форма для запроса локации -->
+            <form action="/locations/{{ location.id }}/request" method="POST" style="display:inline;">
+                <button type="submit">Запросить</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ casting.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('plans') }}">Съёмочные планы</a></li>
+            <li><a href="{{ url_for('locations') }}">Локации</a></li>
+            <li><a href="{{ url_for('castings') }}">Кастинг</a></li>
+        </ul>
+    </nav>
+    <h1>{{ casting.title }}</h1>
+    <p><b>Актеры:</b> {{ casting.actors }}</p>
+    <p><b>Адрес:</b> {{ casting.address }}</p>
+    <p><b>Время:</b> {{ casting.time }}</p>
+
+    <!-- Форма для назначения прослушивания -->
+    <form action="/castings/{{ casting.id }}/schedule" method="POST" style="display:inline;">
+        <button type="submit">Назначить прослушивание</button>
+    </form>
+
+    <!-- Навигация -->
+    
+</body>
+</html>
